@@ -31,7 +31,7 @@ INSTALASI
 
 CATATAN
 - Email dan nomor WhatsApp pada profil adalah contoh; ubah lewat menu Edit Profil.
-- Dua proyek awal adalah data contoh tugas. Ganti dengan karya yang benar-benar dimiliki.
+- 3 proyek awal adalah data contoh tugas. Ganti dengan karya yang benar-benar dimiliki.
 - Form kontak menyimpan pesan di tabel pesan_kontak. Pesan terbaru dapat dilihat di dashboard.
 - Upload gambar dibatasi 3 MB dan format JPG, PNG, WEBP.
 - Jika nama folder di htdocs bukan portfolio_marsha, sesuaikan fungsi base_url() di config/helpers.php.
