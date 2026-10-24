@@ -10,10 +10,7 @@ Aplikasi berbasis web sederhana menggunakan HTML, CSS, dan PHP untuk menampilkan
 - Formulir Kontak / Tautan Media Sosial
 - Desain Responsif (Tampilan HP & Desktop)
 
-PROJECT WEBSITE PORTOFOLIO - MARSHA DARA ALIFA
-===============================================
-
-TEKNOLOGI
+### Tools:
 - PHP native (disarankan PHP 8+)
 - MySQL/MariaDB
 - Bootstrap 5.3.3 melalui CDN
