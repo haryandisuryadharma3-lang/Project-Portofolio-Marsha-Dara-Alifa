@@ -1,0 +1,16 @@
+<?php
+require __DIR__ . '/../config/koneksi.php';
+require __DIR__ . '/../config/helpers.php';
+require_admin();
+$totalProyek = (int)$pdo->query('SELECT COUNT(*) FROM proyek')->fetchColumn();
+$totalPesan = (int)$pdo->query('SELECT COUNT(*) FROM pesan_kontak')->fetchColumn();
+$profil = $pdo->query('SELECT * FROM profil WHERE id=1')->fetch();
+$pesanTerbaru = $pdo->query('SELECT * FROM pesan_kontak ORDER BY created_at DESC LIMIT 5')->fetchAll();
+?>
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard Admin</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="<?= e(base_url('assets/css/style.css')) ?>" rel="stylesheet"></head><body class="admin-body">
+<nav class="navbar bg-white border-bottom"><div class="container"><a class="navbar-brand fw-bold" href="<?= e(base_url()) ?>">Marsha<span class="text-primary">.</span> Admin</a><div class="d-flex align-items-center gap-3"><span class="small text-secondary">Halo, <?= e($_SESSION['admin_username'] ?? 'Admin') ?></span><a class="btn btn-outline-danger btn-sm" href="<?= e(base_url('logout.php')) ?>">Logout</a></div></div></nav>
+<main class="container py-5"><div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"><div><p class="eyebrow">DASHBOARD</p><h1 class="h2 fw-bold mb-0">Panel Admin</h1></div><a class="btn btn-outline-primary" href="<?= e(base_url()) ?>" target="_blank" rel="noopener">Lihat Website ↗</a></div>
+<div class="row g-3 mb-4"><div class="col-md-4"><div class="stat-card"><span class="text-secondary">Total Proyek</span><div class="display-5 fw-bold"><?= $totalProyek ?></div></div></div><div class="col-md-4"><div class="stat-card"><span class="text-secondary">Pesan Masuk</span><div class="display-5 fw-bold"><?= $totalPesan ?></div></div></div><div class="col-md-4"><div class="stat-card"><span class="text-secondary">Profil</span><div class="h4 fw-bold mt-2"><?= e($profil['nama'] ?? 'Belum diatur') ?></div></div></div></div>
+<div class="row g-4"><div class="col-lg-6"><div class="form-card h-100"><h2 class="h5 fw-bold">Kelola Portofolio</h2><p class="text-secondary">Tambah, edit, hapus proyek, dan unggah gambar proyek.</p><a class="btn btn-primary" href="<?= e(base_url('admin/proyek.php')) ?>">Kelola Proyek</a></div></div><div class="col-lg-6"><div class="form-card h-100"><h2 class="h5 fw-bold">Kelola Profil</h2><p class="text-secondary">Ubah bio, email, WhatsApp, dan foto profil.</p><a class="btn btn-primary" href="<?= e(base_url('admin/profil.php')) ?>">Edit Profil</a></div></div></div>
+<section class="form-card mt-4"><h2 class="h5 fw-bold mb-3">Pesan Terbaru</h2><?php if (!$pesanTerbaru): ?><p class="text-secondary mb-0">Belum ada pesan masuk.</p><?php else: ?><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Nama</th><th>Email</th><th>WhatsApp</th><th>Pesan</th><th>Tanggal</th></tr></thead><tbody><?php foreach ($pesanTerbaru as $p): ?><tr><td><?= e($p['nama']) ?></td><td><?= e($p['email']) ?></td><td><?= e($p['whatsapp']) ?></td><td><?= e(mb_strimwidth($p['pesan'],0,70,'...')) ?></td><td><?= e($p['created_at']) ?></td></tr><?php endforeach; ?></tbody></table></div><?php endif; ?></section>
+</main></body></html>
