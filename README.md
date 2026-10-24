@@ -1,6 +1,6 @@
-# Website Portofolio Personal
+# Project Website Portofolio 
 
-Aplikasi berbasis web sederhana menggunakan HTML, CSS, dan JavaScript untuk menampilkan portofolio, proyek, serta pengalaman kerja.
+Aplikasi berbasis web sederhana menggunakan HTML, CSS, dan PHP untuk menampilkan portofolio, project, serta Formulir Kontak.
 
 ## Fitur Utama
 - Login Admin & Logout
